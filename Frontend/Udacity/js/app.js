@@ -25,11 +25,16 @@ const navbar = document.getElementById("navbar__list"); //To create the unordere
  *
  */
 function createListItem() {
-  for (section of getSections) {
-    sectionName = section.getAttribute("data-nav"); //grabbing section name
-    sectionLink = section.getAttribute("id"); //grabbing section id
-    listItem = document.createElement("li"); //creating a list of items
-    listItem.innerHTML = `<a class='menu__link' href='#${sectionLink}'>${sectionName}</a>`; //generating the item name and link from the grabbed data
+  for (let section of getSections) {
+    let sectionName = section.getAttribute("data-nav"); //grabbing section name
+    let listItem = document.createElement("li"); //creating a list of items
+    listItem.className = "menu__link";
+    listItem.innerHTML = sectionName; //generating the item name and link from the grabbed data
+    listItem.addEventListener("click", (e) => {
+      e.preventDefault();
+      section.scrollIntoView({ behavior: "smooth" });
+    });
+
     navbar.appendChild(listItem); //adding the list created to te menu
   }
 }
